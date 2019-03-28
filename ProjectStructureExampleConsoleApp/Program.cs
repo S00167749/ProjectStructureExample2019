@@ -13,7 +13,9 @@ namespace ProjectStructureExampleConsoleApp
     {
         static void Main(string[] args)
         {
+            //set end point
             ClientAuthentication.baseWebAddress = "http://localhost:51132/";
+            //logins in and returns yes
             if (ClientAuthentication.login("bowles.lionie@itsligo.ie", "LBowles$1"))
             {
                 Console.WriteLine("Successful login Token acquired {0} user status is {1}", ClientAuthentication.AuthToken,ClientAuthentication.AuthStatus.ToString());
@@ -24,7 +26,8 @@ namespace ProjectStructureExampleConsoleApp
                     {
                         Console.WriteLine("Got {0} accounts for current logged in user {1}", acuvm.accounts.Count(), acuvm.AccountManagerName);
                         // Get account list using current UserID
-                        List<Account> accounts = ClientAuthentication.getList<Account>("api/AccountManager/getAccountsForCurrentManager/" + acuvm.AccountManagerID);
+                        List<Account> accounts = acuvm.accounts;
+                            //ClientAuthentication.getList<Account>("api/AccountManager/getAccountsForCurrentManager/" + acuvm.AccountManagerID);
                         foreach (var item in accounts)
                         {
                             Console.WriteLine("Account Name {0}", item.AccountName);

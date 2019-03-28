@@ -19,6 +19,7 @@ namespace ProjectStructureExample2019.Controllers
         [Route("getAccounts")]
         public AccountUserViewModel getAccounts()
         {
+            //gets current user name
             var currentuser = db.getUserByName(User.Identity.Name);
             if (currentuser != null) {
                 var CurrnetUserPortfoliio = db.GetAccountsByUser(currentuser.Id);
@@ -41,6 +42,7 @@ namespace ProjectStructureExample2019.Controllers
         [Route("getAccountsForCurrentManager/{id}")]
         public List<Account> getAccounts(string id)
         {
+            //returnds accountviewmodel.accounts
             return db.GetAccountsByUser(id).accounts;
         }
 

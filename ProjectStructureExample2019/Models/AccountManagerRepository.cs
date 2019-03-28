@@ -25,7 +25,9 @@ namespace ProjectStructureExample2019.Models
             ApplicationUser AccountManager = getUserByID(uid);
             if ( AccountManager != null)
             {
+                //accounts this guy has/ a list
                 var ManagerAccounts = bctx.Accounts.Where(a => a.AccountManagerID == uid).ToList();
+                //contruct that viewmodel here from different classess
                 return new AccountUserViewModel {
                      AccountManagerID = AccountManager.Id,
                       AccountManagerName = AccountManager.FirstName + " " + AccountManager.SecondName,
@@ -37,6 +39,7 @@ namespace ProjectStructureExample2019.Models
 
         public ApplicationUser getUserByID(string id)
         {
+            //find by id
             return actx.Users.Find(id);
         }
 

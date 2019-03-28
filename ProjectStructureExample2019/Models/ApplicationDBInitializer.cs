@@ -103,15 +103,16 @@ namespace ProjectStructureExample2019.Models
             if (roles.Any())
             {
                 var users = context.Users.ToList();
-                // Get users in roles
+                // Get users in roles//all users with manger roles
                 var AccountManagers = (from c in users
                               where c.Roles.Any(r => r.RoleId == roles.First().Id)
                               select c);
-                // Assign a random user to a company
+                // Assign a random user to a company//account.
                 foreach (var company in bctx.Accounts)
                 {
                     // Select a random account manager id
                     company.AccountManagerID = AccountManagers
+                        //getting a ramdon user
                         .Select(m => new { id = m.Id, order = Guid.NewGuid().ToString() })
                         .OrderBy(o => o.order)
                         .Select(r => r.id)
